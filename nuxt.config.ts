@@ -1,5 +1,12 @@
+import pkg from './package.json'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      version: pkg.version
+    }
+  },
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',

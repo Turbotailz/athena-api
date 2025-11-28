@@ -40,18 +40,6 @@ A community-driven API for Overwatch heroes, items, and abilities. Built to fill
   :::
 
 #default
-  :::prose-pre
-  ---
-  code: |
-    # Get all heroes via curl
-    curl https://overwatch-api.pages.dev/api/heroes
-
-    # Or use the raw JSON directly from GitHub
-    curl https://raw.githubusercontent.com/Turbotailz/overwatch-hero-api/main/data/heroes.json
-  filename: Terminal
-  language: bash
-  ---
-
   ```bash [Terminal]
   # Get all heroes via curl
   curl https://overwatch-api.pages.dev/api/heroes
@@ -59,7 +47,6 @@ A community-driven API for Overwatch heroes, items, and abilities. Built to fill
   # Or use the raw JSON directly from GitHub
   curl https://raw.githubusercontent.com/samgoodger/overwatch-hero-api/main/data/heroes.json
   ```
-  :::
 ::
 
 ::u-page-section{class="dark:bg-neutral-950"}
