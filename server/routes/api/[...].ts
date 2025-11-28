@@ -7,6 +7,20 @@ const app = new Hono().basePath('/api');
 // Enable CORS
 app.use('*', cors());
 
+// Root endpoint (Welcome)
+app.get('/', (c) => {
+  return c.json({
+    message: 'Welcome to the Overwatch Hero API',
+    documentation: 'https://overwatch-hero-api.pages.dev',
+    endpoints: {
+      meta: '/api/meta',
+      heroes: '/api/heroes',
+      items: '/api/items',
+      powers: '/api/powers'
+    }
+  });
+});
+
 // Meta endpoint
 app.get('/meta', (c) => {
   return c.json({
@@ -28,6 +42,7 @@ app.get('/heroes', (c) => {
     heroes = heroes.filter(h => h.role?.toLowerCase() === role.toLowerCase());
   }
   
+  c.header('Content-Type', 'application/json');
   return c.json(heroes);
 });
 
@@ -56,6 +71,7 @@ app.get('/heroes/:id', (c) => {
       .filter(Boolean);
   }
   
+  c.header('Content-Type', 'application/json');
   return c.json(result);
 });
 
@@ -72,6 +88,7 @@ app.get('/items', (c) => {
     items = items.filter(i => i.rarity?.toLowerCase() === rarity.toLowerCase());
   }
   
+  c.header('Content-Type', 'application/json');
   return c.json(items);
 });
 
@@ -83,6 +100,7 @@ app.get('/items/:id', (c) => {
     return c.json({ error: 'Item not found' }, 404);
   }
   
+  c.header('Content-Type', 'application/json');
   return c.json(item);
 });
 
@@ -95,6 +113,7 @@ app.get('/powers', (c) => {
     powers = powers.filter(p => p.upgrade_type?.toLowerCase() === type.toLowerCase());
   }
   
+  c.header('Content-Type', 'application/json');
   return c.json(powers);
 });
 
@@ -106,12 +125,12 @@ app.get('/powers/:id', (c) => {
     return c.json({ error: 'Power not found' }, 404);
   }
   
+  c.header('Content-Type', 'application/json');
   return c.json(power);
 });
 
 // Nitro/Nuxt H3 Handler
 export default eventHandler(async (event) => {
-  // Convert H3 event to standard Request
   const webReq = toWebRequest(event);
   const res = await app.fetch(webReq);
   return res;
