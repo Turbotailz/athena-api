@@ -1,4 +1,4 @@
-import type { Hero, Item, Power } from './data/types';
+import type { Hero, Item, Power } from './data/types.js';
 
 export class OverwatchHeroClient {
   private baseUrl: string;

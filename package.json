@@ -18,12 +18,14 @@
   },
   "type": "module",
   "bin": {
+    "overwatch-hero-api": "./dist/src/mcp.js",
     "overwatch-mcp": "./dist/src/mcp.js"
   },
   "scripts": {
     "dev": "nuxt dev",
-    "build": "npm run build-data && nuxt build",
-    "deploy": "npm run build && wrangler pages deploy dist",
+    "build": "npm run build-data && npm run build:lib && nuxt build",
+    "build:lib": "tsc -p tsconfig.lib.json",
+    "deploy": "npm run build && wrangler pages deploy .output/public",
     "build-data": "tsx scripts/process-data.ts",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",

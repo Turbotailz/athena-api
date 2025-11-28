@@ -1,3 +1,3 @@
-export * from './data/types';
-export { OverwatchHeroClient } from './client';
+export * from './data/types.js';
+export { OverwatchHeroClient } from './client.js';
 

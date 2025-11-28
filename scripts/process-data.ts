@@ -237,7 +237,7 @@ async function main() {
       // For now, let's keep filename consistent with previous runs to avoid re-downloading everything if slug is same
       const prefix = entry.rarity === 'power' ? 'item' : 'item'; // Keeping 'item' prefix to reuse cached images
       const filename = `${prefix}-${newId}${ext}`;
-      imagePath = await downloadImage(entry.portrait_url, filename);
+      imagePath = (await downloadImage(entry.portrait_url, filename)) || null;
     }
 
     // Strip external URLs & Normalize Stats
@@ -265,7 +265,7 @@ async function main() {
     if (hero.portrait_url) {
       const ext = path.extname(hero.portrait_url) || '.webp';
       const filename = `hero-${newId}${ext}`;
-      imagePath = await downloadImage(hero.portrait_url, filename);
+      imagePath = (await downloadImage(hero.portrait_url, filename)) || null;
     }
 
     // Find linked items/powers and translate their IDs
@@ -355,8 +355,8 @@ export interface Power {
 
   const dataContent = `
 // This file is auto-generated. Do not edit manually.
-import type { Hero, Item, Power } from './types';
-import { STAT_DEFINITIONS } from './types';
+import type { Hero, Item, Power } from './types.js';
+import { STAT_DEFINITIONS } from './types.js';
 
 export const DATA: { 
   version: string; 

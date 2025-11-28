@@ -62,7 +62,7 @@ This package includes a Model Context Protocol (MCP) server.
 
 Run directly:
 ```bash
-npx overwatch-hero-api-mcp
+npx overwatch-hero-api
 ```
 
 Or configure in `claude_desktop_config.json`:
@@ -71,7 +71,7 @@ Or configure in `claude_desktop_config.json`:
   "mcpServers": {
     "overwatch": {
       "command": "npx",
-      "args": ["-y", "overwatch-hero-api-mcp"]
+      "args": ["-y", "overwatch-hero-api"]
     }
   }
 }
