@@ -22,7 +22,7 @@
   },
   "scripts": {
     "dev": "nuxt dev",
-    "build": "nuxt build",
+    "build": "npm run build-data && nuxt build",
     "deploy": "npm run build && wrangler pages deploy dist",
     "build-data": "tsx scripts/process-data.ts",
     "preview": "nuxt preview",
