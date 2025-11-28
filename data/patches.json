@@ -1,0 +1,21 @@
+[
+    {
+        "id": "9a1b8f04-116c-4385-bd89-ce1db061a912",
+        "version": "Patch: 2.19.1.0",
+        "release_date": "2025-11-11",
+        "created_at": "2025-11-11"
+    },
+    {
+        "id": "0a2af07f-a529-4528-a5d3-5957530cbbc8",
+        "version": "Patch: 2.19.0.0",
+        "release_date": "2025-10-14",
+        "created_at": "2025-10-19"
+    },
+    {
+        "id": "d56455f0-3ca5-4ced-a8cf-5ddb3b52d683",
+        "version": "Patch: 2.18.1.1",
+        "release_date": "2025-10-01",
+        "created_at": "2025-10-05"
+    }
+]
+

@@ -1,0 +1,19 @@
+node_modules
+dist
+.output
+.nuxt
+.data
+.wrangler
+.DS_Store
+*.log
+
+# Generated data (rebuilt on deploy)
+src/data/db.ts
+src/data/types.ts
+
+# Large assets (downloaded by build script)
+public/images/*
+!public/images/.gitkeep
+
+# Environment
+.env
