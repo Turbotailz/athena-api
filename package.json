@@ -7,19 +7,19 @@
     "type": "git",
     "url": "git+https://github.com/Turbotailz/overwatch-hero-api.git"
   },
-  "main": "dist/src/lib.js",
-  "types": "dist/src/lib.d.ts",
+  "main": "dist/npm/src/lib.js",
+  "types": "dist/npm/src/lib.d.ts",
   "files": [
-    "dist"
+    "dist/npm"
   ],
   "exports": {
-    ".": "./dist/src/lib.js",
-    "./data": "./dist/src/data/db.js"
+    ".": "./dist/npm/src/lib.js",
+    "./data": "./dist/npm/src/data/db.js"
   },
   "type": "module",
   "bin": {
-    "overwatch-hero-api": "./dist/src/mcp.js",
-    "overwatch-mcp": "./dist/src/mcp.js"
+    "overwatch-hero-api": "dist/npm/src/mcp.js",
+    "overwatch-mcp": "dist/npm/src/mcp.js"
   },
   "scripts": {
     "dev": "nuxt dev",
