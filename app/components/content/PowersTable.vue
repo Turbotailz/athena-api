@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { Power } from '~/src/data/types'
+import type { Power, Hero } from '~/src/data/types'
 
 const { data: powers } = await useFetch<Power[]>('/api/powers')
+const { data: heroes } = await useFetch<Hero[]>('/api/heroes')
 
 const columns = [
   {
@@ -22,6 +23,24 @@ const columns = [
     }
   },
   {
+    id: 'hero',
+    header: 'Hero',
+    cell: ({ row }) => {
+      const heroId = row.original.hero_id
+      const hero = heroes.value?.find(h => h.id === heroId)
+      if (!hero) return '-'
+      
+      return h('div', { class: 'flex items-center gap-2' }, [
+        hero.image_url ? h('img', { 
+          src: hero.image_url, 
+          alt: hero.name,
+          class: 'w-6 h-6 rounded-full object-cover'
+        }) : null,
+        h('span', { class: 'text-sm' }, hero.name)
+      ])
+    }
+  },
+  {
     accessorKey: 'description',
     header: 'Description',
     cell: ({ row }) => h('span', { class: 'text-sm text-muted line-clamp-2', title: row.original.description }, row.original.description)
@@ -29,27 +48,29 @@ const columns = [
 ]
 
 const search = ref('')
-const typeFilter = ref('all')
+const heroFilter = ref('all')
 
 const filteredPowers = computed(() => {
   let result = powers.value || []
   
   if (search.value) {
+    const q = search.value.toLowerCase()
     result = result.filter(power => 
-      power.name.toLowerCase().includes(search.value.toLowerCase())
+      power.name.toLowerCase().includes(q) ||
+      power.description.toLowerCase().includes(q)
     )
   }
 
-  if (typeFilter.value !== 'all') {
-    result = result.filter(power => power.upgrade_type === typeFilter.value)
+  if (heroFilter.value !== 'all') {
+    result = result.filter(power => power.hero_id === heroFilter.value)
   }
   
   return result
 })
 
-const upgradeTypes = computed(() => {
-  const types = new Set(powers.value?.map(p => p.upgrade_type).filter(Boolean) as string[])
-  return ['all', ...Array.from(types)]
+const heroOptions = computed(() => {
+  const options = heroes.value?.map(h => ({ label: h.name, value: h.id })) || []
+  return [{ label: 'All Heroes', value: 'all' }, ...options.sort((a, b) => a.label.localeCompare(b.label))]
 })
 </script>
 
@@ -63,9 +84,11 @@ const upgradeTypes = computed(() => {
         class="max-w-sm"
       />
       <USelect 
-        v-model="typeFilter" 
-        :items="upgradeTypes"
-        class="w-40"
+        v-model="heroFilter" 
+        :items="heroOptions"
+        option-attribute="label"
+        value-attribute="value"
+        class="w-48"
       />
     </div>
     <UTable 
@@ -75,4 +98,3 @@ const upgradeTypes = computed(() => {
     />
   </div>
 </template>
-

@@ -17,7 +17,7 @@ function getRarityColor(rarity: string) {
     <UCard
       v-for="item in items"
       :key="item.id"
-      :to="`/api/items/${item.id}`"
+      :to="`/endpoints/items/${item.id}`"
       target="_blank"
       class="hover:ring-2 hover:ring-primary-500 transition-all"
       :ui="{ body: { padding: 'p-3' } }"

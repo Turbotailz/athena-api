@@ -73,6 +73,7 @@ interface ProcessedHero extends Omit<RawHero, 'portrait_url' | 'raw_portrait_url
 interface ProcessedItem extends Omit<RawItem, 'portrait_url' | 'raw_portrait_url' | 'stat_changes'> {
   image_url: string | null;
   stat_changes: Record<string, any>;
+  hero_id?: string;
 }
 
 interface ProcessedPower extends ProcessedItem {
@@ -280,8 +281,14 @@ async function main() {
     for (const id of linkedIds) {
       if (itemsMap.has(id)) {
         linkedItemIds.push(id);
+        // Link item back to hero
+        const item = itemsMap.get(id);
+        if (item) item.hero_id = newId;
       } else if (powersMap.has(id)) {
         linkedPowerIds.push(id);
+        // Link power back to hero
+        const power = powersMap.get(id);
+        if (power) power.hero_id = newId;
       }
     }
 
@@ -335,6 +342,7 @@ export interface Item {
   is_universal: boolean;
   image_url: string | null;
   stat_changes: Record<string, any>;
+  hero_id?: string;
   [key: string]: any;
 }
 
@@ -349,6 +357,7 @@ export interface Power {
   is_universal: boolean;
   image_url: string | null;
   stat_changes: Record<string, any>;
+  hero_id?: string;
   [key: string]: any;
 }
 `;
