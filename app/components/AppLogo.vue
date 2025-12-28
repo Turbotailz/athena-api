@@ -1,23 +1,8 @@
 <template>
   <div class="flex items-center gap-2">
-    <!-- Monochrome Icon (Current Color) -->
-    <svg
-      viewBox="0 0 100 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      class="text-primary-500 w-8 h-8 shrink-0"
-    >
-      <!-- The "A" / Lambda Shape -->
-      <path
-        d="M50 5 L90 95 H70 L55 55 L45 55 L30 95 H10 L50 5 Z"
-        fill="currentColor"
-      />
-      <!-- The Crossbar (Line from bottom left) -->
-      <path
-        d="M25 65 L65 65 L60 75 L30 75 Z"
-        fill="currentColor"
-      />
-    </svg>
+    <!-- Logo from file -->
+    <img src="/logo.svg" alt="Athena API Logo" class="h-8 w-auto shrink-0" />
+    
     <!-- Project Name -->
     <span class="font-bold text-lg tracking-wide hidden md:block">
       Athena API

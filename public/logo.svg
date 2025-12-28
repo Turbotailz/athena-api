@@ -1,10 +1,13 @@
-<svg width="512" height="512" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path
-    d="M50 5 L90 95 H70 L55 55 L45 55 L30 95 H10 L50 5 Z"
-    fill="#0ea5e9"
-  />
-  <path
-    d="M25 65 L65 65 L60 75 L30 75 Z"
-    fill="#0ea5e9"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1125 985" fill="none">
+  <defs>
+    <linearGradient id="athena_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" /> <!-- Cyan-400 -->
+      <stop offset="100%" stop-color="#2563eb" /> <!-- Blue-600 -->
+    </linearGradient>
+  </defs>
+  
+  <path 
+    fill="url(#athena_gradient)" 
+    d="m1.05 984 563-983 560 983c-365.6-236.8-491-462-508-545l73 17-125-224-159 281c63.28-92.9 200 0 122 169s-526 302-526 302Z"
   />
 </svg>

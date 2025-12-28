@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       link: [
-        { rel: 'favicon', type: 'image/svg+xml', href: '/logo.svg' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap' }
       ]
     }
@@ -44,7 +44,8 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-07-11',
 
   routeRules: {
-    '/api/**': { cors: true }
+    '/api/**': { cors: true },
+    '/api/players/**': { swr: 3600, cors: true }
   },
 
   nitro: {
