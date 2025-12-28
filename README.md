@@ -1,18 +1,18 @@
-# Overwatch Hero API
+# Athena API
 
-An open-source API for fetching data about heroes in Overwatch, including data for the Stadium game mode. This project provides a public REST API, a typed NPM client, and the raw dataset.
+An open-source API for fetching data about heroes in Overwatch, including data for the Stadium game mode and Player Stats. This project provides a public REST API, a typed NPM client, and the raw dataset.
 
 ## Features
 
-- **REST API**: Hosted on Cloudflare Workers, providing fast access to Hero, Item, and Power data.
+- **REST API**: Hosted on Cloudflare Workers, providing fast access to Hero, Item, Power, and Player Stats data.
 - **NPM Package**: TypeScript-ready client SDK and types.
 - **Images**: Hosted portraits and item/power icons.
 - **MCP Server**: Native support for AI models to query the data.
-- **Serverless**: Built with Hono and Cloudflare Workers.
+- **Serverless**: Built with Nuxt and Cloudflare Workers.
 
 ## Public API
 
-Base URL: `https://overwatch-hero-api.pages.dev` (Example URL, replace with actual deployment)
+Base URL: `https://athena-api.pages.dev` (Example URL, replace with actual deployment)
 
 ### Endpoints
 
@@ -26,6 +26,9 @@ Base URL: `https://overwatch-hero-api.pages.dev` (Example URL, replace with actu
 - `GET /api/powers` - List all powers (items with rarity "power").
   - Query: `type`
 - `GET /api/powers/:id` - Get a specific power.
+- `GET /api/players/search` - Search for a player profile.
+  - Query: `name`
+- `GET /api/players/:id/stats` - Get stats for a specific player profile.
 - `GET /api/meta` - Get API version and stats.
 
 ## NPM Package Usage
@@ -33,15 +36,15 @@ Base URL: `https://overwatch-hero-api.pages.dev` (Example URL, replace with actu
 Install the package:
 
 ```bash
-npm install overwatch-hero-api
+npm install athena-api
 ```
 
 ### Using the Client
 
 ```typescript
-import { OverwatchHeroClient } from 'overwatch-hero-api';
+import { AthenaClient } from 'athena-api';
 
-const client = new OverwatchHeroClient();
+const client = new AthenaClient();
 
 // Get all heroes
 const heroes = await client.getHeroes();
@@ -62,16 +65,16 @@ This package includes a Model Context Protocol (MCP) server.
 
 Run directly:
 ```bash
-npx overwatch-hero-api
+npx athena-api
 ```
 
 Or configure in `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "overwatch": {
+    "athena": {
       "command": "npx",
-      "args": ["-y", "overwatch-hero-api"]
+      "args": ["-y", "athena-api"]
     }
   }
 }
@@ -82,7 +85,7 @@ Or configure in `claude_desktop_config.json`:
 If you need the full dataset locally (warning: includes all text data):
 
 ```typescript
-import { DATA } from 'overwatch-hero-api/data';
+import { DATA } from 'athena-api/data';
 
 console.log(DATA.heroes);
 console.log(DATA.powers);

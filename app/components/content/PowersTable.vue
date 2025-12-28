@@ -26,7 +26,7 @@ const columns = [
     id: 'hero',
     header: 'Hero',
     cell: ({ row }) => {
-      const heroId = row.original.hero_id
+      const heroId = row.original.hero
       const hero = heroes.value?.find(h => h.id === heroId)
       if (!hero) return '-'
       
@@ -57,19 +57,19 @@ const filteredPowers = computed(() => {
     const q = search.value.toLowerCase()
     result = result.filter(power => 
       power.name.toLowerCase().includes(q) ||
-      power.description.toLowerCase().includes(q)
+      (power.description && power.description.toLowerCase().includes(q))
     )
   }
 
   if (heroFilter.value !== 'all') {
-    result = result.filter(power => power.hero_id === heroFilter.value)
+    result = result.filter(power => power.hero === heroFilter.value)
   }
   
   return result
 })
 
 const heroOptions = computed(() => {
-  const options = heroes.value?.map(h => ({ label: h.name, value: h.id })) || []
+  const options = heroes.value?.filter(h => h.stadium).map(h => ({ label: h.name, value: h.id })) || []
   return [{ label: 'All Heroes', value: 'all' }, ...options.sort((a, b) => a.label.localeCompare(b.label))]
 })
 </script>

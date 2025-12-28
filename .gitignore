@@ -1,11 +1,15 @@
 node_modules
-dist
+dist/
+!dist/npm/
 .output
 .nuxt
 .data
 .wrangler
 .DS_Store
 *.log
+
+# Raw Scraped Data
+data/raw/
 
 # Generated data (rebuilt on deploy)
 src/data/db.ts

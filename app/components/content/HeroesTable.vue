@@ -8,66 +8,39 @@ const columns = [
     accessorKey: 'name',
     header: 'Hero',
     cell: ({ row }) => {
-      return h('div', { class: 'flex items-center gap-2' }, [
+      return h(resolveComponent('NuxtLink'), { 
+        to: `/reference/heroes/${row.original.id}`,
+        class: 'flex items-center gap-2 hover:text-primary-500'
+      }, () => [
         row.original.image_url ? h('img', { 
           src: row.original.image_url, 
           alt: row.original.name,
-          class: 'w-8 h-8 rounded-full object-cover'
+          class: 'w-10 h-10 rounded-full object-cover border border-gray-200 dark:border-gray-700'
         }) : null,
-        h('span', { class: 'font-medium' }, row.original.name)
+        h('span', { class: 'font-medium text-lg' }, row.original.name)
       ])
     }
-  },
-  {
-    accessorKey: 'role',
-    header: 'Role',
-    cell: ({ row }) => row.original.role,
-    // cell: ({ row }) => {
-    //   const role = row.original.role?.toLowerCase()
-    //   let color = 'neutral'
-    //   if (role === 'tank') color = 'blue'
-    //   if (role === 'damage') color = 'red'
-    //   if (role === 'support') color = 'green'
-      
-    //   return h('UBadge', { color, variant: 'subtle', size: 'xs', class: 'capitalize' }, () => row.original.role)
-    // }
-  },
-  {
-    accessorKey: 'base_stats.base_hp',
-    header: 'Health',
-    cell: ({ row }) => row.original.base_stats?.base_hp || '-'
-  },
-  {
-    accessorKey: 'base_stats.armor',
-    header: 'Armor',
-    cell: ({ row }) => row.original.base_stats?.armor || '-'
-  },
-  {
-    accessorKey: 'base_stats.shield',
-    header: 'Shield',
-    cell: ({ row }) => row.original.base_stats?.shield || '-'
-  },
-  {
-    accessorKey: 'base_stats.move_speed',
-    header: 'Speed',
-    cell: ({ row }) => row.original.base_stats?.move_speed || '-'
   }
 ]
 
 const search = ref('')
 
-const filteredHeroes = computed(() => {
-  if (!search.value) return heroes.value
-  return heroes.value?.filter(hero => 
-    hero.name.toLowerCase().includes(search.value.toLowerCase()) ||
-    hero.role?.toLowerCase().includes(search.value.toLowerCase())
-  )
-})
+const roles = ['Tank', 'Damage', 'Support']
+
+const getHeroesByRole = (role: string) => {
+  let result = heroes.value?.filter(h => h.role?.toLowerCase() === role.toLowerCase()) || []
+  
+  if (search.value) {
+    result = result.filter(hero => hero.name.toLowerCase().includes(search.value.toLowerCase()))
+  }
+  
+  return result
+}
 </script>
 
 <template>
   <div>
-    <div class="mb-4">
+    <div class="mb-8">
       <UInput
         v-model="search"
         icon="i-lucide-search"
@@ -75,11 +48,37 @@ const filteredHeroes = computed(() => {
         class="max-w-sm"
       />
     </div>
-    <UTable 
-      :data="filteredHeroes" 
-      :columns="columns" 
-      class="flex-1"
-    />
+
+    <div v-for="role in roles" :key="role" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+        <span class="w-2 h-8 rounded-full" :class="{
+          'bg-blue-500': role === 'Tank',
+          'bg-red-500': role === 'Damage',
+          'bg-green-500': role === 'Support'
+        }"></span>
+        {{ role }}
+      </h2>
+      
+      <div v-if="getHeroesByRole(role).length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <NuxtLink
+          v-for="hero in getHeroesByRole(role)"
+          :key="hero.id"
+          :to="`/reference/heroes/${hero.id}`"
+          class="flex items-center gap-4 p-4 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary-500 dark:hover:border-primary-500 transition-colors bg-white dark:bg-gray-900"
+        >
+          <img 
+            v-if="hero.image_url" 
+            :src="hero.image_url" 
+            :alt="hero.name"
+            class="w-16 h-16 rounded-full object-cover"
+          />
+          <div>
+            <h3 class="font-bold text-lg">{{ hero.name }}</h3>
+            <p v-if="hero.stadium" class="text-xs text-primary-500 font-medium">Stadium Hero</p>
+          </div>
+        </NuxtLink>
+      </div>
+      <p v-else class="text-muted text-sm italic">No heroes found.</p>
+    </div>
   </div>
 </template>
-
