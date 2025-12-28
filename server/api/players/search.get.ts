@@ -1,5 +1,5 @@
 import { defineEventHandler, getQuery, createError, getRequestURL } from 'h3'
-import { searchPlayers } from '../../../../src/blizzard'
+import { searchPlayers } from '../../../src/blizzard'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)

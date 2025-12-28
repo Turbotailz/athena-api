@@ -1,5 +1,5 @@
 import { defineEventHandler, getRouterParam, createError } from 'h3'
-import { getPlayerStats } from '../../../../../src/blizzard'
+import { getPlayerStats } from '../../../../src/blizzard'
 
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
