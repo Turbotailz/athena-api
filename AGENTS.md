@@ -1,7 +1,7 @@
-# Overwatch Hero API - Agent Context
+# Athena API - Agent Context
 
 ## 1. Mission & Philosophy
-**Goal**: Create the definitive **Open Source API** for Overwatch heroes, items, and abilities, filling the gap left by Blizzard's lack of public data.
+**Goal**: Create the definitive **Open Source API** for Overwatch heroes, items, abilities, and player stats, filling the gap left by Blizzard's lack of public data.
 
 - **Community-First**: Data is crowd-sourced and verified by players.
 - **Open Access**: Everything is free. Data is available via REST API, NPM package, and raw JSON.
@@ -21,14 +21,14 @@ This project uses a unique **Static Data** architecture to ensure zero latency a
 ### Tech Stack
 - **Framework**: Nuxt 4 (Hybrid rendering: SSG for docs, Server Routes for API).
 - **Language**: TypeScript (Strict).
-- **API Engine**: Hono (mounted as Nuxt Server Route).
+- **API Engine**: Nuxt Server Routes (Nitro).
 - **Hosting**: Cloudflare Pages (Edge network).
 - **UI**: Nuxt UI (Tailwind CSS based).
 
 ## 3. Project Structure
 - `data/`: **Source of Truth**. Raw JSON files editable by the community.
 - `src/data/`: **Generated Artifacts**. Do not edit `db.ts` or `types.ts` manually.
-- `server/routes/api/`: The REST API implementation (Hono).
+- `server/api/`: The REST API implementation.
 - `content/`: Documentation pages (Markdown).
 - `components/content/`: Vue components usable inside Markdown (MDC).
 - `scripts/`: Build tools to process data and download images.
@@ -42,7 +42,7 @@ To add a new hero or fix a typo:
 3.  Commit both the raw JSON and the generated files.
 
 ### B. Adding API Endpoints
-1.  Modify `server/routes/api/[...].ts`.
+1.  Create or modify files in `server/api/`.
 2.  Use the typed data from `src/data/db.ts`.
 3.  Ensure response types are exported in `src/lib.ts` (the client SDK).
 

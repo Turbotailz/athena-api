@@ -1,0 +1,31 @@
+[
+    // Community sourced heroes go here.
+    // Use the same format as heroes.json.
+    // Example:
+    /*
+    {
+        "id": "uuid-v4",
+        "name": "Ramattra",
+        "role": "Tank",
+        "portrait_url": null, 
+        "base_stats": {
+            "LIFE": 450,
+            "Armor": 225,
+            "Shield": 0,
+            "Max Ammo": 0,
+            "Move Speed": 5.5,
+            "Attack Speed": 1,
+            "Melee Damage": 30,
+            "Reload Speed": 1.5,
+            "Weapon Power": 0,
+            "Ability Power": 0,
+            "Critical Damage": 0,
+            "Weapon Lifesteal": 0,
+            "Ability Lifesteal": 0,
+            "Cooldown Reduction": 0
+        },
+        "enabled": true,
+        "release_date": null
+    }
+    */
+]

@@ -1,9 +1,9 @@
 import type { Hero, Item, Power } from './data/types.js';
 
-export class OverwatchHeroClient {
+export class AthenaClient {
   private baseUrl: string;
 
-  constructor(baseUrl: string = 'https://overwatch-hero-api.pages.dev') {
+  constructor(baseUrl: string = 'https://athena-api.pages.dev') {
     this.baseUrl = baseUrl.replace(/\/$/, '');
   }
 

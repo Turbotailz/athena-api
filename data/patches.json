@@ -1,5 +1,11 @@
 [
     {
+        "id": "0ad04b3d-e0f3-4e88-881a-189eeba6589f",
+        "version": "Patch: 2.20.0.0\n",
+        "release_date": "2025-12-09",
+        "created_at": "2025-12-09"
+    },
+    {
         "id": "9a1b8f04-116c-4385-bd89-ce1db061a912",
         "version": "Patch: 2.19.1.0",
         "release_date": "2025-11-11",
@@ -16,6 +22,53 @@
         "version": "Patch: 2.18.1.1",
         "release_date": "2025-10-01",
         "created_at": "2025-10-05"
+    },
+    {
+        "id": "03f52665-b721-4f69-a6ef-55871e287cad",
+        "version": "Patch: 2.18.1.0",
+        "release_date": "2025-09-16",
+        "created_at": "2025-09-19"
+    },
+    {
+        "id": "b531c6b0-faa3-452f-ba85-f55bc41ef2cb",
+        "version": "Patch: 2.18.0.0",
+        "release_date": "2025-08-26",
+        "created_at": "2025-08-27"
+    },
+    {
+        "id": "5551d618-571c-4b96-abb6-65418fcaa661",
+        "version": "Patch: 2.17.1\n",
+        "release_date": "2025-07-22",
+        "created_at": "2025-07-23"
+    },
+    {
+        "id": "10909fce-a284-4987-bcfe-96e65f708963",
+        "version": "2.17.0.1.140030",
+        "release_date": "2025-07-08",
+        "created_at": "2025-07-09"
+    },
+    {
+        "id": "09e6b66d-a4c6-4a36-bbf5-504df10dca83",
+        "version": "2.17.0.0.139475",
+        "release_date": "2025-06-24",
+        "created_at": "2025-06-24"
+    },
+    {
+        "id": "a35d4c24-3253-4266-83d2-a7319c7ffded",
+        "version": "2.16.1.0.555555",
+        "release_date": "2025-05-29",
+        "created_at": "2025-05-31"
+    },
+    {
+        "id": "0cc2c4ba-749a-4a0b-bf90-180f1dca0c07",
+        "version": "2.16.1.0.138432",
+        "release_date": "2025-05-20",
+        "created_at": "2025-05-20"
+    },
+    {
+        "id": "6a7a3695-6de9-4088-be12-e823692cec5f",
+        "version": "2.16.0.2.138051",
+        "release_date": "2025-05-15",
+        "created_at": "2025-05-18"
     }
 ]
-

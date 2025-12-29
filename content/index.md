@@ -1,7 +1,7 @@
 ---
 seo:
-  title: Overwatch Hero API
-  description: A free, open-source, and community-driven API for Overwatch hero data, items, and powers.
+  title: Athena API
+  description: A free, open-source, and community-driven API for Overwatch hero data, items, powers, and player stats.
 ---
 
 ::u-page-hero{class="dark:bg-gradient-to-b from-neutral-900 to-neutral-950"}
@@ -12,10 +12,10 @@ orientation: horizontal
 :hero-background
 
 #title
-Open Source [Overwatch]{.text-primary} Data.
+[Athena]{.text-primary} API
 
 #description
-A community-driven API for Overwatch heroes, items, and abilities. Built to fill the gap left by the lack of an official public API, providing data crowd-sourced by players for developers, creators, and analysts.
+A community-driven API for Overwatch heroes, items, abilities, and player stats. Built to fill the gap left by the lack of an official public API, providing data crowd-sourced by players for developers, creators, and analysts.
 
 #links
   :::u-button
@@ -33,7 +33,7 @@ A community-driven API for Overwatch heroes, items, and abilities. Built to fill
   color: neutral
   variant: outline
   size: xl
-  to: https://github.com/Turbotailz/overwatch-hero-api
+  to: https://github.com/Turbotailz/athena-api
   target: _blank
   ---
   Contribute on GitHub
@@ -42,10 +42,10 @@ A community-driven API for Overwatch heroes, items, and abilities. Built to fill
 #default
   ```bash [Terminal]
   # Get all heroes via curl
-  curl https://overwatch-api.pages.dev/api/heroes
+  curl https://athena-api.pages.dev/api/heroes
 
-  # Or use the raw JSON directly from GitHub
-  curl https://raw.githubusercontent.com/samgoodger/overwatch-hero-api/main/data/heroes.json
+  # Search for a player
+  curl https://athena-api.pages.dev/api/players/search?name=Turbotailz
   ```
 ::
 
@@ -167,13 +167,13 @@ The community has used this data to build draft tools, wiki pages, and analysis 
 
   :::u-page-feature
   ---
-  icon: i-lucide-shirt
+  icon: i-lucide-bar-chart
   ---
   #title
-  Item Browsers
+  Player Stats
   
   #description
-  Build galleries of skins, emotes, and voice lines using `/api/items`.
+  Search for profiles and get detailed career statistics with `/api/players`.
   :::
 
   :::u-page-feature
@@ -196,7 +196,7 @@ The community has used this data to build draft tools, wiki pages, and analysis 
         to: '/getting-started/introduction'
         trailingIcon: i-lucide-arrow-right
       - label: Star on GitHub
-        to: 'https://github.com/samgoodger/overwatch-hero-api'
+        to: 'https://github.com/Turbotailz/athena-api'
         target: _blank
         variant: subtle
         icon: i-simple-icons-github

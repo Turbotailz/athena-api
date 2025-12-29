@@ -1,8 +1,8 @@
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'amber',
-      neutral: 'stone'
+      primary: 'sky',
+      neutral: 'slate'
     },
     footer: {
       slots: {
@@ -12,7 +12,7 @@ export default defineAppConfig({
     }
   },
   seo: {
-    siteName: 'Overwatch Hero API'
+    siteName: 'Athena API'
   },
   header: {
     logo: {
@@ -24,7 +24,7 @@ export default defineAppConfig({
     colorMode: true,
     links: [{
       icon: 'i-simple-icons-github',
-      to: 'https://github.com/Turbotailz/overwatch-hero-api',
+      to: 'https://github.com/Turbotailz/athena-api',
       target: '_blank',
       ariaLabel: 'GitHub'
     }]
@@ -34,7 +34,7 @@ export default defineAppConfig({
     colorMode: false,
     links: [{
       icon: 'i-simple-icons-github',
-      to: 'https://github.com/Turbotailz/overwatch-hero-api',
+      to: 'https://github.com/Turbotailz/athena-api',
       target: '_blank',
       ariaLabel: 'GitHub'
     }]
@@ -43,7 +43,7 @@ export default defineAppConfig({
     title: 'Table of Contents',
     bottom: {
       title: 'Community',
-      edit: 'https://github.com/Turbotailz/overwatch-hero-api/edit/main/content',
+      edit: 'https://github.com/Turbotailz/athena-api/edit/main/content',
       links: []
     }
   }

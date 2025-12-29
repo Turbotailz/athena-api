@@ -13,7 +13,7 @@ import { DATA } from './data/db.js';
 
 const server = new Server(
   {
-    name: 'overwatch-hero-api',
+    name: 'athena-api',
     version: DATA.version,
   },
   {
@@ -314,7 +314,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error('Overwatch MCP Server running on stdio');
+  console.error('Athena MCP Server running on stdio');
 }
 
 main().catch((error) => {

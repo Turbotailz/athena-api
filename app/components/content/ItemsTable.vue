@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { Item } from '~/src/data/types'
+import type { Item, Hero } from '~/src/data/types'
 
 const { data: items } = await useFetch<Item[]>('/api/items')
+const { data: heroes } = await useFetch<Hero[]>('/api/heroes')
 
 const columns = [
   {
@@ -59,18 +60,25 @@ const columns = [
 
 const search = ref('')
 const typeFilter = ref('all')
+const heroFilter = ref('all')
 
 const filteredItems = computed(() => {
   let result = items.value || []
   
   if (search.value) {
+    const q = search.value.toLowerCase()
     result = result.filter(item => 
-      item.name.toLowerCase().includes(search.value.toLowerCase())
+      item.name.toLowerCase().includes(q) ||
+      (item.description && item.description.toLowerCase().includes(q))
     )
   }
   
   if (typeFilter.value !== 'all') {
     result = result.filter(item => item.upgrade_type === typeFilter.value)
+  }
+
+  if (heroFilter.value !== 'all') {
+    result = result.filter(item => item.hero === heroFilter.value)
   }
   
   return result
@@ -79,6 +87,11 @@ const filteredItems = computed(() => {
 const upgradeTypes = computed(() => {
   const types = new Set(items.value?.map(i => i.upgrade_type).filter(Boolean) as string[])
   return ['all', ...Array.from(types)]
+})
+
+const heroOptions = computed(() => {
+  const options = heroes.value?.filter(h => h.stadium).map(h => ({ label: h.name, value: h.id })) || []
+  return [{ label: 'All Heroes', value: 'all' }, ...options.sort((a, b) => a.label.localeCompare(b.label))]
 })
 </script>
 
@@ -96,6 +109,14 @@ const upgradeTypes = computed(() => {
         :items="upgradeTypes"
         class="w-40"
       />
+      <USelect 
+        v-model="heroFilter" 
+        :items="heroOptions"
+        option-attribute="label"
+        value-attribute="value"
+        placeholder="Filter by Hero"
+        class="w-48"
+      />
     </div>
     <UTable 
       :data="filteredItems" 
@@ -104,4 +125,3 @@ const upgradeTypes = computed(() => {
     />
   </div>
 </template>
-

@@ -1,11 +1,11 @@
 {
-  "name": "overwatch-hero-api",
-  "version": "2.19.1",
+  "name": "athena-api",
+  "version": "2.20.0",
   "license": "MIT",
-  "description": "An open API to fetch Overwatch Hero data, for the base game and Stadium modes",
+  "description": "An open API to fetch Overwatch data, including Heroes, Items, and Player Stats",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Turbotailz/overwatch-hero-api.git"
+    "url": "git+https://github.com/Turbotailz/athena-api.git"
   },
   "main": "dist/npm/src/lib.js",
   "types": "dist/npm/src/lib.d.ts",
@@ -18,8 +18,9 @@
   },
   "type": "module",
   "bin": {
-    "overwatch-hero-api": "dist/npm/src/mcp.js",
-    "overwatch-mcp": "dist/npm/src/mcp.js"
+    "athena": "dist/npm/src/cli.js",
+    "athena-api": "dist/npm/src/mcp.js",
+    "athena-mcp": "dist/npm/src/mcp.js"
   },
   "scripts": {
     "dev": "nuxt dev",
@@ -27,6 +28,11 @@
     "build:lib": "tsc -p tsconfig.lib.json",
     "deploy": "npm run build && wrangler pages deploy .output/public",
     "build-data": "tsx scripts/process-data.ts",
+    "fetch-data": "tsx scripts/fetch-stadium-data.ts",
+    "scrape-blizzard": "tsx scripts/fetch-blizzard-heroes.ts",
+    "normalize-data": "tsx scripts/normalize-data.ts",
+    "update-data": "npm run fetch-data && npm run scrape-blizzard && npm run normalize-data && npm run build-data",
+    "sync-version": "tsx scripts/sync-version.ts",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "predeploy": "npm run build-data"
@@ -42,8 +48,10 @@
     "@nuxt/ui": "^4.2.1",
     "@nuxtjs/color-mode": "^4.0.0",
     "better-sqlite3": "^12.4.6",
+    "cheerio": "^1.1.2",
+    "commander": "^14.0.2",
     "eslint": "^9.39.1",
-    "hono": "^4.0.0",
+    "inquirer": "^13.1.0",
     "nuxt": "^4.2.1",
     "nuxt-llms": "^0.1.3",
     "nuxt-og-image": "^5.1.12",
@@ -53,6 +61,8 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.0.0",
     "@types/node": "^20.19.25",
+    "@types/semver": "^7.7.1",
+    "semver": "^7.7.3",
     "ts-node": "^10.0.0",
     "tsx": "^4.0.0",
     "typescript": "^5.9.3",

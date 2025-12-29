@@ -48,9 +48,8 @@ This project uses a **static data architecture** with NO runtime database:
 ### Dual Rendering Modes
 - **Nuxt Framework**: Nuxt 4 with hybrid rendering
   - Static Site Generation (SSG) for documentation pages in `content/`
-  - Server Routes for the REST API at `server/routes/api/[...].ts`
-- **API Layer**: Hono framework mounted as a Nuxt server route
-  - Converts H3 events to Web Request objects
+  - Server Routes for the REST API at `server/api/`
+- **API Layer**: Native Nuxt Server Routes
   - Handles all `/api/*` endpoints
 - **Hosting**: Cloudflare Pages (configured via `nitro.preset` in nuxt.config.ts)
 
@@ -63,7 +62,7 @@ This project uses a **static data architecture** with NO runtime database:
 - `src/data/types.ts` — **Generated** TypeScript type definitions
 
 #### API Implementation
-- `server/routes/api/[...].ts` — Hono app with all REST endpoints
+- `server/api/` — REST API implementation
   - Imports `DATA` from `src/data/db.ts`
   - Returns JSON responses for heroes, items, powers
   - Supports query params (`role`, `type`, `rarity`) and expansion (`expand=items,powers`)
@@ -87,7 +86,7 @@ To add a hero or fix item stats:
 3. Commit **both** the raw JSON and generated files
 
 ### Adding API Endpoints
-1. Edit `server/routes/api/[...].ts` (Hono routes)
+1. Create or edit files in `server/api/`
 2. Use typed data from `src/data/db.ts`
 3. Export response types in `src/lib.ts` for SDK consumers
 4. Test locally with `npm run dev`
